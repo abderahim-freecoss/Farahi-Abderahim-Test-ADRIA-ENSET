@@ -17,6 +17,7 @@
         <module>account-service</module>
         <module>transaction-service</module>
         <module>gateway-service</module>
+        <module>discovery-service</module>
     </modules>
     <properties>
         <java.version>21</java.version>

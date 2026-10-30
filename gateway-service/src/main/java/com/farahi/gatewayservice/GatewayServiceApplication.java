@@ -17,10 +17,10 @@ public class GatewayServiceApplication {
         return builder.routes()
                 .route("account-service", route -> route.path("/account/**")
                         .filters(filter -> filter.stripPrefix(1))
-                        .uri("http://localhost:8056"))
+                        .uri("lb://account-service"))
                 .route("transaction-service", route -> route.path("/transaction/**")
                         .filters(filter -> filter.stripPrefix(1))
-                        .uri("http://localhost:8057"))
+                        .uri("lb://transaction-service"))
                 .build();
     }
 }
