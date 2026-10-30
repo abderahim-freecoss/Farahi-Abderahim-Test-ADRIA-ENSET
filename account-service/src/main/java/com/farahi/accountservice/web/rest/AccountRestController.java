@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
@@ -33,5 +34,18 @@ public class AccountRestController {
     @PostMapping("/accounts")
     public Account saveAccount(@Valid @RequestBody Account account) {
         return accountService.saveAccount(account);
+    }
+
+    @PostMapping("/accounts/{id}/debit")
+    public Account debit(@PathVariable UUID id, @RequestBody AmountRequest request) {
+        return accountService.debit(id, request.amount());
+    }
+
+    @PostMapping("/accounts/{id}/credit")
+    public Account credit(@PathVariable UUID id, @RequestBody AmountRequest request) {
+        return accountService.credit(id, request.amount());
+    }
+
+    public record AmountRequest(BigDecimal amount) {
     }
 }
